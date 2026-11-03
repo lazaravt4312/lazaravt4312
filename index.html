@@ -249,6 +249,10 @@
       line-height: 1.8;
     }
 
+    .mobile-story-title {
+      display: none;
+    }
+
     footer {
       text-align: center;
       padding: 2rem 1.5rem 6.5rem;
@@ -368,17 +372,26 @@
 
     @media (max-width: 768px) {
       .hero {
-        min-height: 26vh;
-        padding: 2.8rem 1.2rem 1rem;
+        min-height: auto;
+        padding: 1.8rem 1.2rem 0.6rem;
       }
 
       .hero h1 {
-        font-size: 2.6rem;
-        letter-spacing: 0.2em;
+        font-size: 2.4rem;
+        letter-spacing: 0.18em;
       }
 
       .hero .tagline {
-        font-size: 1.05rem;
+        font-size: 0.98rem;
+        margin-top: 0.35rem;
+      }
+
+      .films {
+        padding: 0.2rem 0 2.4rem;
+      }
+
+      .section-heading {
+        margin-bottom: 0.9rem;
       }
 
       .film-card {
@@ -386,13 +399,24 @@
       }
 
       .carousel {
-        padding: 0.6rem 0.6rem 1.4rem 0.6rem;
+        padding: 0.4rem 0.5rem 1.1rem 0.5rem;
       }
 
       .team-about {
         grid-template-columns: 1fr;
-        gap: 1.8rem;
-        padding: 1rem 1.2rem 3rem;
+        gap: 1.4rem;
+        padding: 0.6rem 1.2rem 2.6rem;
+      }
+
+      .mobile-story-title {
+        display: block;
+        text-align: center;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.15rem;
+        letter-spacing: 0.16em;
+        text-transform: lowercase;
+        color: var(--muted);
+        margin-bottom: 0.6rem;
       }
 
       .team-photo {
@@ -408,6 +432,10 @@
 
       .about {
         text-align: center;
+      }
+
+      .about h2 {
+        display: none;
       }
 
       .contact-btn {
@@ -468,6 +496,7 @@
   </section>
 
   <section class="team-about">
+    <div class="mobile-story-title">our story</div>
     <div class="team-photo">
       <img src="Lobo-2401.jpg" alt="GRAZIA">
     </div>
@@ -542,7 +571,6 @@
       }
     });
 
-    // Keep carousel at start
     window.addEventListener('load', () => {
       document.getElementById('carousel').scrollLeft = 0;
     });
