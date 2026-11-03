@@ -41,43 +41,46 @@
     }
 
     .hero {
-      min-height: 38vh;
+      min-height: 28vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 4.5rem 1.5rem 2rem;
+      padding: 3.2rem 1.5rem 1.2rem;
     }
 
     .hero h1 {
-      font-size: clamp(3.2rem, 11vw, 6.5rem);
-      letter-spacing: 0.28em;
-      line-height: 0.95;
+      font-size: clamp(2.8rem, 8vw, 5.2rem);
+      letter-spacing: 0.26em;
+      line-height: 0.92;
     }
 
     .hero .tagline {
-      margin-top: 0.8rem;
+      margin-top: 0.55rem;
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: clamp(1.15rem, 2.8vw, 1.55rem);
-      letter-spacing: 0.14em;
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+      letter-spacing: 0.08em;
       color: var(--muted);
     }
 
     .films {
-      padding: 1rem 0 3.5rem;
+      padding: 0.4rem 0 3.2rem;
     }
 
     .section-heading {
       text-align: center;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.4rem;
     }
 
     .section-heading h2 {
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.35rem, 3.2vw, 1.7rem);
       letter-spacing: 0.18em;
-      text-transform: uppercase;
+      text-transform: lowercase;
+      font-weight: 400;
+      color: var(--muted);
     }
 
     .carousel-outer {
@@ -90,7 +93,7 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
-      padding: 0.6rem 0.6rem 1.4rem 0.6rem;
+      padding: 0.6rem 1rem 1.4rem 1rem;
       -webkit-overflow-scrolling: touch;
     }
 
@@ -211,7 +214,7 @@
     .team-about {
       max-width: 1040px;
       margin: 0 auto;
-      padding: 1.5rem 1.5rem 4rem;
+      padding: 1.2rem 1.5rem 3.5rem;
       display: grid;
       grid-template-columns: 1fr 1.25fr;
       gap: 3.2rem;
@@ -365,17 +368,25 @@
 
     @media (max-width: 768px) {
       .hero {
-        min-height: 30vh;
-        padding: 3.5rem 1.2rem 1.5rem;
+        min-height: 26vh;
+        padding: 2.8rem 1.2rem 1rem;
       }
 
       .hero h1 {
-        font-size: 2.8rem;
+        font-size: 2.6rem;
         letter-spacing: 0.2em;
+      }
+
+      .hero .tagline {
+        font-size: 1.05rem;
       }
 
       .film-card {
         width: min(92vw, 480px);
+      }
+
+      .carousel {
+        padding: 0.6rem 0.6rem 1.4rem 0.6rem;
       }
 
       .team-about {
@@ -411,12 +422,12 @@
 
   <header class="hero">
     <h1>GRAZIA</h1>
-    <p class="tagline">elegant & intimate</p>
+    <p class="tagline">intimate & elegant weddings</p>
   </header>
 
   <section class="films">
     <div class="section-heading">
-      <h2>Films</h2>
+      <h2>some of our films</h2>
     </div>
 
     <div class="carousel-outer">
@@ -464,16 +475,17 @@
     <div class="about">
       <h2>Our Story</h2>
       <p>GRAZIA style is devoted to refined elegance and intimate moments, where every glance, every touch, and every detail tells a story meant to be cherished for a lifetime.</p>
-      <p>We are GRAZIA Family, and behind our cameras is a collective of dedicated filmmakers whose experience spans diverse fields of cinematic storytelling. United by artistry and guided by emotion, we create films that feel as beautiful as the memories themselves.</p>
+      <p>We are the GRAZIA Family. Led by Radoš and Lazar, we are a collective of dedicated filmmakers whose experience spans diverse fields of cinematic storytelling. United by artistry and guided by emotion, we create films that feel as beautiful as the memories themselves.</p>
+      <p>With a thoughtful approach and an appreciation for the beauty of genuine moments, we bring each story to life with elegance, authenticity, and a timeless cinematic touch.</p>
     </div>
   </section>
 
   <footer>
     <div class="footer-logo">GRAZIA</div>
-    <div class="footer-tagline">elegant & intimate</div>
+    <div class="footer-tagline">intimate & elegant weddings</div>
   </footer>
 
-  <button class="contact-btn" onclick="openContact()">Contact</button>
+  <button class="contact-btn" onclick="openContact()">Get in touch</button>
 
   <div class="video-modal" id="videoModal">
     <button class="close-video" onclick="closeVideo()">×</button>
@@ -483,7 +495,7 @@
   <div class="modal-overlay" id="contactModal">
     <div class="modal">
       <button class="close-btn" onclick="closeContact()">×</button>
-      <h3>Contact</h3>
+      <h3>Get in touch</h3>
       <div class="modal-links">
         <a href="mailto:graziaweddings@gmail.com">Email</a>
         <a href="https://www.instagram.com/graziaweddings/" target="_blank" rel="noopener">Instagram</a>
@@ -492,32 +504,8 @@
   </div>
 
   <script>
-    const carousel = document.getElementById('carousel');
-    let hasInteracted = false;
-    let hintTimeout;
-
-    function resetHint() {
-      clearTimeout(hintTimeout);
-      if (!hasInteracted) {
-        hintTimeout = setTimeout(() => {
-          if (!hasInteracted) {
-            const cardWidth = carousel.querySelector('.film-card')?.offsetWidth || 300;
-            const moveAmount = Math.round(cardWidth * 0.12);
-            carousel.scrollBy({ left: moveAmount, behavior: 'smooth' });
-            setTimeout(() => {
-              if (!hasInteracted) {
-                carousel.scrollBy({ left: -moveAmount, behavior: 'smooth' });
-              }
-            }, 900);
-          }
-        }, 5000);
-      }
-    }
-
     document.querySelectorAll('.film-card').forEach(card => {
       card.addEventListener('click', function () {
-        hasInteracted = true;
-        clearTimeout(hintTimeout);
         const url = this.getAttribute('data-video');
         const modal = document.getElementById('videoModal');
         const frame = document.getElementById('videoFrame');
@@ -525,16 +513,6 @@
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
       });
-    });
-
-    carousel.addEventListener('scroll', () => {
-      hasInteracted = true;
-      clearTimeout(hintTimeout);
-    });
-
-    carousel.addEventListener('touchstart', () => {
-      hasInteracted = true;
-      clearTimeout(hintTimeout);
     });
 
     function closeVideo() {
@@ -564,7 +542,10 @@
       }
     });
 
-    resetHint();
+    // Keep carousel at start
+    window.addEventListener('load', () => {
+      document.getElementById('carousel').scrollLeft = 0;
+    });
   </script>
 </body>
 </html>
