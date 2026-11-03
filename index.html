@@ -1,403 +1,544 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#480316">
-  <title>GRAZIA — Elegant & Intimate Weddings</title>
-  <meta name="description" content="GRAZIA Weddings — elegant and intimate wedding films, created with a cinematic eye.">
+  <meta name="theme-color" content="#3a0a0a">
+  <title>GRAZIA — elegant & intimate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --wine: #480316;
-      --wine-deep: #350210;
-      --white: #fff;
-      --muted: rgba(255,255,255,.72);
-      --line: rgba(255,255,255,.19);
+      --bordo: #3a0a0a;
+      --white: #ffffff;
+      --muted: rgba(255, 255, 255, 0.72);
+      --line: rgba(255, 255, 255, 0.15);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      background: var(--wine);
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bordo);
       color: var(--white);
-      font-family: "Montserrat", sans-serif;
-      font-weight: 300;
       line-height: 1.65;
       overflow-x: hidden;
     }
-    a { color: inherit; }
-    .page-shell { width: 100%; overflow: hidden; }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+    }
+
     .hero {
-      min-height: 40vh;
-      min-height: 40svh;
+      min-height: 38vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 72px 24px 42px;
+      padding: 4.5rem 1.5rem 2rem;
     }
+
     .hero h1 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(4.2rem, 10vw, 8rem);
-      font-weight: 400;
-      letter-spacing: .25em;
-      line-height: .95;
-      padding-left: .25em;
+      font-size: clamp(3.2rem, 11vw, 6.5rem);
+      letter-spacing: 0.28em;
+      line-height: 0.95;
     }
-    .tagline {
-      margin-top: 16px;
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+
+    .hero .tagline {
+      margin-top: 0.8rem;
+      font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      letter-spacing: .13em;
+      font-size: clamp(1.15rem, 2.8vw, 1.55rem);
+      letter-spacing: 0.14em;
       color: var(--muted);
     }
+
     .films {
-      padding: 18px 0 76px;
+      padding: 1rem 0 3.5rem;
     }
+
     .section-heading {
       text-align: center;
-      padding: 0 20px 27px;
+      margin-bottom: 1.8rem;
     }
-    .eyebrow {
-      display: block;
-      font-size: .62rem;
-      letter-spacing: .28em;
+
+    .section-heading h2 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.55);
-      margin-bottom: 8px;
     }
-    .section-heading h2, .about h2, .contact-heading {
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: .13em;
+
+    .carousel-outer {
+      overflow: hidden;
     }
-    .section-heading h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); }
-    .carousel-outer { overflow: hidden; }
+
     .carousel {
       display: flex;
-      gap: 22px;
+      gap: 1.1rem;
       overflow-x: auto;
-      padding: 5px max(24px, calc((100vw - 1180px)/2)) 22px;
       scroll-snap-type: x mandatory;
-      scroll-padding-left: 24px;
+      scroll-behavior: smooth;
+      padding: 0.6rem 1rem 1.4rem;
       -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,.38) transparent;
     }
-    .carousel::-webkit-scrollbar { height: 3px; }
-    .carousel::-webkit-scrollbar-track { background: rgba(255,255,255,.08); }
-    .carousel::-webkit-scrollbar-thumb { background: rgba(255,255,255,.38); }
-    .slide {
-      flex: 0 0 min(72vw, 720px);
+
+    .carousel::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .carousel::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .carousel::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.35);
+      border-radius: 2px;
+    }
+
+    .film-card {
+      flex: 0 0 auto;
+      width: min(88vw, 640px);
       scroll-snap-align: center;
-      background: var(--wine-deep);
-      border: 1px solid var(--line);
-    }
-    .video-frame {
       position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #21010a;
-    }
-    .video-frame iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-    .slide-caption {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 11px 15px;
-      color: var(--muted);
-      font-size: .62rem;
-      letter-spacing: .17em;
-      text-transform: uppercase;
-    }
-    .slide-caption span:last-child { opacity: .55; }
-    .carousel-hint {
-      text-align: center;
-      color: rgba(255,255,255,.52);
-      font-size: .58rem;
-      letter-spacing: .19em;
-      text-transform: uppercase;
-      padding: 3px 20px 0;
-    }
-    .about-section {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 50px 30px 90px;
-      display: grid;
-      grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
-      gap: clamp(35px, 7vw, 90px);
-      align-items: center;
-    }
-    .team-photo {
+      cursor: pointer;
+      border-radius: 10px;
+      overflow: hidden;
       border: 1px solid var(--line);
-      padding: 9px;
-      background: rgba(255,255,255,.035);
+      background: #2a0707;
+      transition: transform 0.25s ease;
     }
-    .team-photo img {
+
+    .film-card:hover {
+      transform: scale(1.012);
+    }
+
+    .film-card img {
       width: 100%;
       height: auto;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
       display: block;
     }
-    .about { max-width: 520px; }
+
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 62px;
+      height: 62px;
+      background: rgba(0,0,0,0.5);
+      border: 2px solid rgba(255,255,255,0.85);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.9;
+      transition: opacity 0.2s, background 0.2s;
+    }
+
+    .film-card:hover .play-icon {
+      opacity: 1;
+      background: rgba(0,0,0,0.7);
+    }
+
+    .play-icon::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 16px solid #fff;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      margin-left: 3px;
+    }
+
+    .film-label {
+      position: absolute;
+      bottom: 12px;
+      left: 14px;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(0,0,0,0.5);
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+    }
+
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-modal.active {
+      display: flex;
+    }
+
+    .video-modal iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .close-video {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      width: 44px;
+      height: 44px;
+      background: rgba(0,0,0,0.65);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .close-video:hover {
+      background: rgba(0,0,0,0.9);
+    }
+
+    .team-about {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 3.2rem;
+      align-items: center;
+    }
+
+    .team-photo {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .team-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
     .about h2 {
-      font-size: clamp(2rem, 4vw, 3.1rem);
-      line-height: 1.05;
-      margin-bottom: 25px;
+      font-size: clamp(1.7rem, 3.5vw, 2.2rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
     }
+
     .about p {
+      font-size: 0.95rem;
+      font-weight: 300;
       color: var(--muted);
-      font-size: .88rem;
-      line-height: 1.95;
-      margin-bottom: 16px;
+      margin-bottom: 1rem;
+      line-height: 1.8;
     }
-    .about .signature {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 1.2rem;
-      font-style: italic;
-      color: rgba(255,255,255,.9);
-      margin-top: 25px;
-    }
+
     footer {
-      border-top: 1px solid var(--line);
       text-align: center;
-      padding: 42px 20px 112px;
+      padding: 2rem 1.5rem 6.5rem;
+      border-top: 1px solid var(--line);
     }
+
     .footer-logo {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 2rem;
-      letter-spacing: .25em;
-      padding-left: .25em;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      letter-spacing: 0.28em;
+      margin-bottom: 0.25rem;
     }
+
     .footer-tagline {
-      font-family: "Cormorant Garamond", serif;
+      font-family: 'Cormorant Garamond', serif;
       font-style: italic;
+      font-size: 0.95rem;
       color: var(--muted);
-      font-size: 1rem;
-      margin-top: 2px;
     }
+
     .contact-btn {
       position: fixed;
-      z-index: 20;
-      bottom: 25px;
+      z-index: 100;
+      bottom: 1.6rem;
       left: 50%;
       transform: translateX(-50%);
-      min-width: 155px;
-      padding: 13px 25px;
-      background: var(--wine);
-      border: 1px solid rgba(255,255,255,.8);
+      padding: 0.85rem 1.8rem;
+      background: var(--bordo);
+      border: 1px solid rgba(255,255,255,0.85);
       color: var(--white);
-      font: 400 .66rem "Montserrat", sans-serif;
-      letter-spacing: .2em;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: background .25s, color .25s;
-      box-shadow: 0 5px 24px rgba(0,0,0,.18);
+      transition: all 0.25s ease;
     }
-    .contact-btn:hover { background: var(--white); color: var(--wine); }
+
+    .contact-btn:hover {
+      background: var(--white);
+      color: var(--bordo);
+    }
+
     .modal-overlay {
       position: fixed;
       inset: 0;
-      z-index: 50;
+      background: rgba(0,0,0,0.82);
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 20px;
-      background: rgba(12,0,4,.82);
+      justify-content: center;
+      z-index: 1000;
       opacity: 0;
       visibility: hidden;
-      transition: opacity .25s, visibility .25s;
+      transition: all 0.25s ease;
     }
-    .modal-overlay.active { opacity: 1; visibility: visible; }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
     .modal {
-      position: relative;
-      width: min(100%, 370px);
-      padding: 43px 28px 32px;
+      background: var(--bordo);
+      border: 1px solid rgba(255,255,255,0.28);
+      padding: 2.6rem 2rem;
       text-align: center;
-      background: var(--wine);
-      border: 1px solid rgba(255,255,255,.3);
-      transform: translateY(12px);
-      transition: transform .25s;
+      max-width: 360px;
+      width: 90%;
+      position: relative;
     }
-    .modal-overlay.active .modal { transform: translateY(0); }
+
     .modal h3 {
-      font: 400 2rem "Cormorant Garamond", serif;
-      letter-spacing: .13em;
+      font-size: 1.5rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 23px;
+      margin-bottom: 1.6rem;
     }
-    .modal-links { display: grid; gap: 11px; }
+
+    .modal-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
     .modal-links a {
       display: block;
-      padding: 13px;
-      border: 1px solid var(--line);
+      padding: 0.95rem;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
       text-decoration: none;
-      font-size: .72rem;
-      letter-spacing: .13em;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      transition: background .2s, color .2s;
+      transition: all 0.25s ease;
     }
-    .modal-links a:hover { background: var(--white); color: var(--wine); }
+
+    .modal-links a:hover {
+      background: var(--white);
+      color: var(--bordo);
+    }
+
     .close-btn {
       position: absolute;
-      top: 10px;
-      right: 15px;
-      border: 0;
+      top: 0.75rem;
+      right: 1rem;
       background: none;
+      border: none;
       color: var(--white);
       font-size: 1.6rem;
       cursor: pointer;
-      opacity: .7;
+      opacity: 0.65;
+      line-height: 1;
     }
-    @media (max-width: 700px) {
+
+    .close-btn:hover {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
       .hero {
-        min-height: 31svh;
-        padding: 66px 18px 28px;
+        min-height: 30vh;
+        padding: 3.5rem 1.2rem 1.5rem;
       }
+
       .hero h1 {
-        font-size: clamp(3.35rem, 15vw, 5rem);
-        letter-spacing: .19em;
-        padding-left: .19em;
+        font-size: 2.8rem;
+        letter-spacing: 0.2em;
       }
-      .tagline {
-        margin-top: 12px;
-        font-size: 1.08rem;
-        letter-spacing: .08em;
+
+      .film-card {
+        width: min(92vw, 480px);
       }
-      .films { padding: 16px 0 48px; }
-      .section-heading { padding-bottom: 19px; }
-      .section-heading h2 { font-size: 2rem; letter-spacing: .1em; }
-      .slide {
-        flex-basis: 86vw;
-        scroll-snap-align: center;
+
+      .team-about {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+        padding: 1rem 1.2rem 3rem;
       }
-      .carousel { gap: 12px; padding: 4px 7vw 17px; }
-      .slide-caption { padding: 9px 11px; font-size: .55rem; }
-      .carousel-hint { font-size: .52rem; letter-spacing: .14em; }
-      .about-section {
-        display: flex;
-        flex-direction: column;
-        gap: 27px;
-        padding: 35px 22px 58px;
+
+      .team-photo {
+        max-width: 340px;
+        margin: 0 auto;
       }
-      .team-photo { width: min(100%, 390px); }
-      .team-photo img { aspect-ratio: 4 / 4.5; }
-      .about { width: 100%; text-align: center; }
-      .about h2 { font-size: 2.2rem; margin-bottom: 17px; }
-      .about p { font-size: .8rem; line-height: 1.85; }
-      .about .signature { margin-top: 18px; }
-      footer { padding: 32px 20px 105px; }
+
+      .about {
+        text-align: center;
+      }
+
       .contact-btn {
-        bottom: max(17px, env(safe-area-inset-bottom));
-        min-width: 145px;
-        padding: 12px 22px;
-        border-radius: 0;
+        bottom: 1.2rem;
+        padding: 0.9rem 1.4rem;
+        border-radius: 50px;
       }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; }
     }
   </style>
 </head>
 <body>
-  <div class="page-shell">
-    <header class="hero">
-      <h1>GRAZIA</h1>
-      <p class="tagline">elegant &amp; intimate</p>
-    </header>
 
-    <main>
-      <section class="films" aria-labelledby="films-title">
-        <div class="section-heading">
-          <span class="eyebrow">A collection of stories</span>
-          <h2 id="films-title">Explore our films</h2>
-        </div>
-        <div class="carousel-outer">
-          <div class="carousel">
-            <article class="slide">
-              <div class="video-frame"><iframe src="https://galleries.vidflow.co/videos/plp84vd4" title="GRAZIA wedding film 1" loading="lazy" allowfullscreen></iframe></div>
-              <div class="slide-caption"><span>Wedding film</span><span>01 / 06</span></div>
-            </article>
-            <article class="slide">
-              <div class="video-frame"><iframe src="https://galleries.vidflow.co/videos/ezktoq0c" title="GRAZIA wedding film 2" loading="lazy" allowfullscreen></iframe></div>
-              <div class="slide-caption"><span>Wedding film</span><span>02 / 06</span></div>
-            </article>
-            <article class="slide">
-              <div class="video-frame"><iframe src="https://galleries.vidflow.co/videos/ec692793" title="GRAZIA wedding film 3" loading="lazy" allowfullscreen></iframe></div>
-              <div class="slide-caption"><span>Wedding film</span><span>03 / 06</span></div>
-            </article>
-            <article class="slide">
-              <div class="video-frame"><iframe src="https://galleries.vidflow.co/videos/s9hemg5u" title="GRAZIA wedding film 4" loading="lazy" allowfullscreen></iframe></div>
-              <div class="slide-caption"><span>Wedding film</span><span>04 / 06</span></div>
-            </article>
-            <article class="slide">
-              <div class="video-frame"><iframe src="https://galleries.vidflow.co/videos/njthpkzp" title="GRAZIA wedding film 5" loading="lazy" allowfullscreen></iframe></div>
-              <div class="slide-caption"><span>Wedding film</span><span>05 / 06</span></div>
-            </article>
-            <article class="slide">
-              <div class="video-frame"><iframe src="https://galleries.vidflow.co/videos/su4cmj1m" title="GRAZIA wedding film 6" loading="lazy" allowfullscreen></iframe></div>
-              <div class="slide-caption"><span>Wedding film</span><span>06 / 06</span></div>
-            </article>
-          </div>
-        </div>
-        <p class="carousel-hint">Swipe to explore · Drag to discover</p>
-      </section>
+  <header class="hero">
+    <h1>GRAZIA</h1>
+    <p class="tagline">elegant & intimate</p>
+  </header>
 
-      <section class="about-section" aria-labelledby="about-title">
-        <div class="team-photo">
-          <img src="Lobo-2401.jpg" alt="The GRAZIA Family">
-        </div>
-        <div class="about">
-          <span class="eyebrow">The people behind the films</span>
-          <h2 id="about-title">Our story</h2>
-          <p>GRAZIA style is devoted to refined elegance and intimate moments, where every glance, every touch, and every detail tells a story meant to be cherished for a lifetime.</p>
-          <p>We are GRAZIA Family, a collective of dedicated filmmakers whose experience spans diverse fields of cinematic storytelling. United by artistry and guided by emotion, we create films that feel as beautiful as the memories themselves.</p>
-          <p class="signature">GRAZIA Weddings</p>
-        </div>
-      </section>
-    </main>
+  <section class="films">
+    <div class="section-heading">
+      <h2>Films</h2>
+    </div>
 
-    <footer>
-      <div class="footer-logo">GRAZIA</div>
-      <div class="footer-tagline">elegant &amp; intimate</div>
-    </footer>
+    <div class="carousel-outer">
+      <div class="carousel">
+
+        <div class="film-card" data-video="https://galleries.vidflow.co/videos/plp84vd4">
+          <img src="preview1.jpg" alt="Trailer 1">
+          <div class="play-icon"></div>
+          <div class="film-label">Trailer</div>
+        </div>
+
+        <div class="film-card" data-video="https://galleries.vidflow.co/videos/ezktoq0c">
+          <img src="preview2.jpg" alt="Reel 1">
+          <div class="play-icon"></div>
+          <div class="film-label">Reel</div>
+        </div>
+
+        <div class="film-card" data-video="https://galleries.vidflow.co/videos/ec692793">
+          <img src="preview3.jpg" alt="Trailer 2">
+          <div class="play-icon"></div>
+          <div class="film-label">Trailer</div>
+        </div>
+
+        <div class="film-card" data-video="https://galleries.vidflow.co/videos/s9hemg5u">
+          <img src="preview4.jpg" alt="Reel 2">
+          <div class="play-icon"></div>
+          <div class="film-label">Reel</div>
+        </div>
+
+        <div class="film-card" data-video="https://galleries.vidflow.co/videos/njthpkzp">
+          <img src="preview5.jpg" alt="Trailer 3">
+          <div class="play-icon"></div>
+          <div class="film-label">Trailer</div>
+        </div>
+
+        <div class="film-card" data-video="https://galleries.vidflow.co/videos/su4cmj1m">
+          <img src="preview6.jpg" alt="Reel 3">
+          <div class="play-icon"></div>
+          <div class="film-label">Reel</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="team-about">
+    <div class="team-photo">
+      <img src="Lobo-2401.jpg" alt="GRAZIA">
+    </div>
+
+    <div class="about">
+      <h2>Our Story</h2>
+      <p>GRAZIA style is devoted to refined elegance and intimate moments, where every glance, every touch, and every detail tells a story meant to be cherished for a lifetime.</p>
+      <p>We are GRAZIA Family, and behind our cameras is a collective of dedicated filmmakers whose experience spans diverse fields of cinematic storytelling. United by artistry and guided by emotion, we create films that feel as beautiful as the memories themselves.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">GRAZIA</div>
+    <div class="footer-tagline">elegant & intimate</div>
+  </footer>
+
+  <button class="contact-btn" onclick="openContact()">Contact</button>
+
+  <div class="video-modal" id="videoModal">
+    <button class="close-video" onclick="closeVideo()">×</button>
+    <iframe id="videoFrame" allowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe>
   </div>
 
-  <button class="contact-btn" type="button" onclick="openModal()">Contact</button>
-
-  <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="contact-title" onclick="if(event.target === this) closeModal()">
+  <div class="modal-overlay" id="contactModal">
     <div class="modal">
-      <button class="close-btn" type="button" aria-label="Close contact window" onclick="closeModal()">×</button>
-      <h3 id="contact-title">Get in touch</h3>
+      <button class="close-btn" onclick="closeContact()">×</button>
+      <h3>Contact</h3>
       <div class="modal-links">
         <a href="mailto:graziaweddings@gmail.com">Email</a>
-        <a href="https://www.instagram.com/graziaweddings/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.instagram.com/graziaweddings/" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
   </div>
 
   <script>
-    function openModal() {
-      document.getElementById('modal').classList.add('active');
+    document.querySelectorAll('.film-card').forEach(card => {
+      card.addEventListener('click', function () {
+        const url = this.getAttribute('data-video');
+        const modal = document.getElementById('videoModal');
+        const frame = document.getElementById('videoFrame');
+        frame.src = url;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeVideo() {
+      const modal = document.getElementById('videoModal');
+      const frame = document.getElementById('videoFrame');
+      frame.src = '';
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
     }
-    function closeModal() {
-      document.getElementById('modal').classList.remove('active');
+
+    function openContact() {
+      document.getElementById('contactModal').classList.add('active');
     }
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') closeModal();
+
+    function closeContact() {
+      document.getElementById('contactModal').classList.remove('active');
+    }
+
+    document.getElementById('contactModal').addEventListener('click', function (e) {
+      if (e.target === this) closeContact();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeVideo();
+        closeContact();
+      }
     });
   </script>
 </body>
