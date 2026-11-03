@@ -500,12 +500,14 @@
       if (!hasInteracted) {
         hintTimeout = setTimeout(() => {
           if (!hasInteracted) {
-            carousel.scrollBy({ left: 80, behavior: 'smooth' });
+            const cardWidth = carousel.querySelector('.film-card')?.offsetWidth || 300;
+            const moveAmount = Math.round(cardWidth * 0.12);
+            carousel.scrollBy({ left: moveAmount, behavior: 'smooth' });
             setTimeout(() => {
               if (!hasInteracted) {
-                carousel.scrollBy({ left: -80, behavior: 'smooth' });
+                carousel.scrollBy({ left: -moveAmount, behavior: 'smooth' });
               }
-            }, 600);
+            }, 900);
           }
         }, 5000);
       }
