@@ -89,7 +89,7 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
-      padding: 0.6rem 1rem 1.4rem;
+      padding: 0.6rem 0.6rem 1.4rem 0.6rem;
       -webkit-overflow-scrolling: touch;
     }
 
@@ -109,7 +109,7 @@
     .film-card {
       flex: 0 0 auto;
       width: min(88vw, 640px);
-      scroll-snap-align: center;
+      scroll-snap-align: start;
       position: relative;
       cursor: pointer;
       border-radius: 10px;
@@ -239,7 +239,7 @@
       width: 100%;
       height: auto;
       display: block;
-      object-fit: cover;
+      object-fit: contain;
     }
 
     .about h2 {
@@ -396,8 +396,14 @@
       }
 
       .team-photo {
-        max-width: 340px;
+        max-width: 100%;
         margin: 0 auto;
+      }
+
+      .team-photo img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
       }
 
       .about {
@@ -425,7 +431,7 @@
     </div>
 
     <div class="carousel-outer">
-      <div class="carousel">
+      <div class="carousel" id="carousel">
 
         <div class="film-card" data-video="https://galleries.vidflow.co/videos/plp84vd4">
           <img src="preview1.jpg" alt="Trailer 1">
@@ -433,31 +439,31 @@
           <div class="film-label">Trailer</div>
         </div>
 
-        <div class="film-card" data-video="https://galleries.vidflow.co/videos/ezktoq0c">
+        <div class="film-card" data-video="https://galleries.vidflow.co/videos/nlzkusf0">
           <img src="preview2.jpg" alt="Reel 1">
           <div class="play-icon"></div>
           <div class="film-label">Reel</div>
         </div>
 
-        <div class="film-card" data-video="https://galleries.vidflow.co/videos/ec692793">
+        <div class="film-card" data-video="https://galleries.vidflow.co/videos/njthpkzp">
           <img src="preview3.jpg" alt="Trailer 2">
           <div class="play-icon"></div>
           <div class="film-label">Trailer</div>
         </div>
 
-        <div class="film-card" data-video="https://galleries.vidflow.co/videos/s9hemg5u">
+        <div class="film-card" data-video="https://galleries.vidflow.co/videos/de4e6859">
           <img src="preview4.jpg" alt="Reel 2">
           <div class="play-icon"></div>
           <div class="film-label">Reel</div>
         </div>
 
-        <div class="film-card" data-video="https://galleries.vidflow.co/videos/njthpkzp">
+        <div class="film-card" data-video="https://galleries.vidflow.co/videos/iefa4f4i">
           <img src="preview5.jpg" alt="Trailer 3">
           <div class="play-icon"></div>
           <div class="film-label">Trailer</div>
         </div>
 
-        <div class="film-card" data-video="https://galleries.vidflow.co/videos/su4cmj1m">
+        <div class="film-card" data-video="https://galleries.vidflow.co/videos/f3q9clm5">
           <img src="preview6.jpg" alt="Reel 3">
           <div class="play-icon"></div>
           <div class="film-label">Reel</div>
@@ -503,8 +509,30 @@
   </div>
 
   <script>
+    const carousel = document.getElementById('carousel');
+    let hasInteracted = false;
+    let hintTimeout;
+
+    function resetHint() {
+      clearTimeout(hintTimeout);
+      if (!hasInteracted) {
+        hintTimeout = setTimeout(() => {
+          if (!hasInteracted) {
+            carousel.scrollBy({ left: 80, behavior: 'smooth' });
+            setTimeout(() => {
+              if (!hasInteracted) {
+                carousel.scrollBy({ left: -80, behavior: 'smooth' });
+              }
+            }, 600);
+          }
+        }, 5000);
+      }
+    }
+
     document.querySelectorAll('.film-card').forEach(card => {
       card.addEventListener('click', function () {
+        hasInteracted = true;
+        clearTimeout(hintTimeout);
         const url = this.getAttribute('data-video');
         const modal = document.getElementById('videoModal');
         const frame = document.getElementById('videoFrame');
@@ -512,6 +540,16 @@
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
       });
+    });
+
+    carousel.addEventListener('scroll', () => {
+      hasInteracted = true;
+      clearTimeout(hintTimeout);
+    });
+
+    carousel.addEventListener('touchstart', () => {
+      hasInteracted = true;
+      clearTimeout(hintTimeout);
     });
 
     function closeVideo() {
@@ -540,6 +578,8 @@
         closeContact();
       }
     });
+
+    resetHint();
   </script>
 </body>
 </html>
