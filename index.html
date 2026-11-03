@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRAZIA — elegant & intimate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bordo: #3a0a0a;
+      --white: #ffffff;
+      --white-soft: rgba(255, 255, 255, 0.75);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bordo);
+      color: var(--white);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 65vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 1.5rem 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 11vw, 6.5rem);
+      letter-spacing: 0.3em;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 3vw, 1.7rem);
+      font-style: italic;
+      letter-spacing: 0.15em;
+      color: var(--white-soft);
+    }
+
+    /* CAROUSEL */
+    .videos {
+      padding: 1rem 0 2.5rem;
+    }
+
+    .carousel-wrapper {
+      overflow: hidden;
+      padding: 0 0.8rem;
+    }
+
+    .carousel {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 0.5rem 0 1.4rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .carousel::-webkit-scrollbar {
+      height: 3px;
+    }
+
+    .carousel::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .carousel::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.3);
+      border-radius: 2px;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      width: min(72vw, 340px);
+      scroll-snap-align: center;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: #2a0707;
+    }
+
+    .slide-label {
+      padding: 0.5rem 0.85rem;
+      font-size: 0.63rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white-soft);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* 1:1 - video agresivno puni ceo kvadrat */
+    .ratio-1-1 {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      background: #2a0707;
+      overflow: hidden;
+    }
+
+    .ratio-1-1 iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 185%;
+      height: 185%;
+      transform: translate(-50%, -50%);
+      border: none;
+    }
+
+    /* TEAM + ABOUT */
+    .team-about {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .team-photo {
+      border: 1px solid rgba(255,255,255,0.15);
+      overflow: hidden;
+    }
+
+    .team-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .team-photo .photo-placeholder {
+      aspect-ratio: 4/5;
+      background: #2a0707;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.25);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+    }
+
+    .about h2 {
+      font-size: 1.7rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.2rem;
+    }
+
+    .about p {
+      font-size: 0.97rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      line-height: 1.75;
+      color: var(--white-soft);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem 5.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.28em;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--white-soft);
+    }
+
+    /* STICKY CONTACT */
+    .contact-btn {
+      position: fixed;
+      z-index: 100;
+      padding: 0.8rem 1.6rem;
+      border: 1px solid var(--white);
+      color: var(--white);
+      background: var(--bordo);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .contact-btn:hover {
+      background: var(--white);
+      color: var(--bordo);
+    }
+
+    @media (min-width: 769px) {
+      .contact-btn {
+        bottom: 1.8rem;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact-btn {
+        bottom: 1.3rem;
+        right: 1.3rem;
+        left: auto;
+        transform: none;
+        padding: 0.85rem 1.2rem;
+        border-radius: 50px;
+      }
+
+      .hero {
+        min-height: 52vh;
+        padding: 2.5rem 1.2rem 1.2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.9rem;
+        letter-spacing: 0.22em;
+      }
+
+      .team-about {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+        padding: 0.5rem 1.2rem 2.8rem;
+      }
+
+      .team-photo {
+        max-width: 320px;
+        margin: 0 auto;
+      }
+    }
+
+    /* POPUP */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--bordo);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      max-width: 340px;
+      width: 90%;
+      position: relative;
+      transform: translateY(15px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal {
+      transform: translateY(0);
+    }
+
+    .modal h3 {
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.6rem;
+    }
+
+    .modal-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .modal-links a {
+      display: block;
+      padding: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.88rem;
+      letter-spacing: 0.07em;
+      transition: all 0.3s ease;
+    }
+
+    .modal-links a:hover {
+      background: var(--white);
+      color: var(--bordo);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 0.8rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0.6;
+      line-height: 1;
+    }
+
+    .close-btn:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <h1>GRAZIA</h1>
+    <p class="tagline">elegant & intimate</p>
+  </header>
+
+  <!-- CAROUSEL -->
+  <section class="videos">
+    <div class="carousel-wrapper">
+      <div class="carousel">
+
+        <div class="slide">
+          <div class="slide-label">Trailer</div>
+          <div class="ratio-1-1">
+            <iframe src="https://galleries.vidflow.co/videos/plp84vd4" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="slide-label">Reel</div>
+          <div class="ratio-1-1">
+            <iframe src="https://galleries.vidflow.co/videos/ezktoq0c" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="slide-label">Trailer</div>
+          <div class="ratio-1-1">
+            <iframe src="https://galleries.vidflow.co/videos/ec692793" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="slide-label">Reel</div>
+          <div class="ratio-1-1">
+            <iframe src="https://galleries.vidflow.co/videos/s9hemg5u" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="slide-label">Trailer</div>
+          <div class="ratio-1-1">
+            <iframe src="https://galleries.vidflow.co/videos/njthpkzp" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="slide-label">Reel</div>
+          <div class="ratio-1-1">
+            <iframe src="https://galleries.vidflow.co/videos/su4cmj1m" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM + ABOUT -->
+  <section class="team-about">
+    <div class="team-photo">
+      <div class="photo-placeholder">
+        Vaša fotka
+      </div>
+      <!-- <img src="vasa-fotka.jpg" alt="GRAZIA"> -->
+    </div>
+
+    <div class="about">
+      <h2>Our Story</h2>
+      <p>GRAZIA style is devoted to refined elegance and intimate moments, where every glance, every touch, and every detail tells a story meant to be cherished for a lifetime.</p>
+      <p>We are GRAZIA Family, and behind our cameras is a collective of dedicated filmmakers whose experience spans diverse fields of cinematic storytelling. United by artistry and guided by emotion, we create films that feel as beautiful as the memories themselves.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">GRAZIA</div>
+    <div class="footer-tagline">elegant & intimate</div>
+  </footer>
+
+  <button class="contact-btn" onclick="openModal()">Contact</button>
+
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <button class="close-btn" onclick="closeModal()">×</button>
+      <h3>Contact</h3>
+      <div class="modal-links">
+        <a href="mailto:graziaweddings@gmail.com">Email</a>
+        <a href="https://www.instagram.com/graziaweddings/" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById('modal').classList.add('active');
+    }
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+    }
+    document.getElementById('modal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
